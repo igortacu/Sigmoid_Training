@@ -1,7 +1,19 @@
 import pandas as pd
 
-df = pd.read_csv("credit_risk_dataset.csv")
+DATASET_FILE = 'credit_risk_dataset.csv'
 
-# print(df.info())
 
-print(df.groupby(['person_age'])['person_income'].agg(['max', 'min', 'mean']))
+def calculate_income_by_age(file_path : str) -> None:
+	'''
+	Calculates and prints income statistics grouped by person age.
+	:param file_path: str
+	This parameter is used for the dataset path.
+	:return:
+	None.
+	'''
+	credit_risk_data = pd.read_csv(file_path)
+	print(credit_risk_data.groupby(['person_age'])['person_income'].agg(['max', 'min', 'mean']))
+
+
+if __name__ == '__main__':
+	calculate_income_by_age(DATASET_FILE)
